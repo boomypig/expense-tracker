@@ -1,0 +1,28 @@
+[
+    {
+        "description": "grocery shopping",
+        "amount":85.5,
+        "category":"Groceries"
+    },
+    {
+        "description": "Electric bill",
+        "amount":99.33,
+        "category":"Utilities"
+    },
+    {
+        "description": "Monthly Rent",
+        "amount":1500.0,
+        "category":"Rent"
+    },
+    {
+        "description": "Takout",
+        "amount":253.0,
+        "category":"Food & Dining"
+    },
+    {
+        "description": "Gym Membership",
+        "amount":-67,
+        "category":"Health & Fitness"
+    }
+]
+
