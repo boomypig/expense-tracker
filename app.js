@@ -104,17 +104,16 @@ Vue.createApp({
                 body: encodedData,
                 headers: myHeaders,
             };
-            let response = await fetch(`${URL}/expenses`, requestOptions);
-
-            if(response.status === 201){
-                let data = await response.json();
-                this.expenses.push(data);
-                this.newExpense.description = ''
-                this.newExpense.amount = ''
-                this.newExpense.category = ''
-            }else{
-                alert("failed to create expense")
-            }
+            fetch(`${URL}/expenses`, requestOptions).then((response) => {
+                if (response.status === 201) {
+                    response.json().then((data) => {
+                        this.expenses.push(data);
+                        this.newExpense = {};
+                    });
+                }else{
+                    alert("not able to add expense")
+                }
+            });
         },
 
         deleteExpense: async function(index) {
