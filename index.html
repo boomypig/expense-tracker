@@ -30,7 +30,7 @@
             </div>
 
             <div class="row-body" v-for="(exp, index) in fileteredExpenses">
-                <div>{{ exp.description }}</div>
+                <div>{{ exp.expense }}</div>
                 <div v-bind:class="[exp.amount > 0 ? 'green' : 'red']">{{ exp.amount }}</div>
                 <div> {{exp.category}} </div>
                 <div class="button-container">
@@ -48,7 +48,7 @@
             <form class="add-form" @submit.prevent="addExpense()">
                 <label class="label-input">
                     <span>Description</span>
-                    <input type="text" class="form-input" v-model="newExpense.description">
+                    <input type="text" class="form-input" v-model="newExpense.expense">
                 </label>
                 <label class="label-input">
                     <span>Amount</span>
@@ -67,7 +67,7 @@
         <div class="content">
             <div id="close" @click="toggleModal()">X</div>
             Description
-            <input type="text" v-model="modal.description" class="modal-input">
+            <input type="text" v-model="modal.expense" class="modal-input">
             Amount
             <input type="text" v-model="modal.amount" class="modal-input">
             Category

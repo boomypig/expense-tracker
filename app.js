@@ -1,4 +1,4 @@
-const URL = 'https://expenses.codeschool.cloud'
+const URL = 'http://localhost:8080'
 
 
 Vue.createApp({
@@ -9,13 +9,13 @@ Vue.createApp({
             searchInput:"",
             modalOpen: false,
             modal:{
-                description:"",
+                expense:"",
                 amount:"",
                 category:"",
                 index:-1,
             },
             newExpense: {
-                description: "",
+                expense: "",
                 amount: "", 
                 category: "",
             },
@@ -52,7 +52,7 @@ Vue.createApp({
             if (index !== null){
                 let exp = this.expenses[index];
                 this.modal.index = index;
-                this.modal.description = exp.description;
+                this.modal.expense = exp.expense;
                 this.modal.amount = exp.amount;
                 this.modal.category = exp.category;
             }
@@ -61,8 +61,8 @@ Vue.createApp({
             let myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
             
-            let encodedData =  "description=" + 
-                                encodeURIComponent(this.modal.description) + 
+            let encodedData =  "expense=" + 
+                                encodeURIComponent(this.modal.expense) + 
                                "&amount=" + 
                                encodeURIComponent(this.modal.amount) + 
                                "&category=" + 
@@ -78,7 +78,7 @@ Vue.createApp({
             let response = await fetch(`${URL}/expenses/${expId}`, requestOptions);
             if (response.status == 204) {
                 let exp = this.expenses[this.modal.index];
-                exp.description = this.modal.description;
+                exp.expense = this.modal.expense;
                 exp.amount = parseFloat(this.modal.amount);
                 exp.category = this.modal.category;
             }else{
@@ -92,8 +92,8 @@ Vue.createApp({
             myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
             let encodedData =  
-            "description=" + 
-             encodeURIComponent(this.newExpense.description) + 
+            "expense=" + 
+             encodeURIComponent(this.newExpense.expense) + 
              "&amount=" + 
              encodeURIComponent(this.newExpense.amount) + 
              "&category=" + 
@@ -142,7 +142,7 @@ Vue.createApp({
 
         fileteredExpenses: function() {
             return this.expenses.filter((expense)=> {
-                return expense.description.toLowerCase().includes(this.searchInput.toLowerCase());
+                return expense.expense.toLowerCase().includes(this.searchInput.toLowerCase());
             })
         }
 
